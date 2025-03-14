@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Часы</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #1a1a1a, #000);
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+
+        .clock-container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.6), 0 0 100px rgba(0, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            text-align: center;
+            animation: glow 3s infinite alternate;
+        }
+
+        #clock {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc;
+            margin: 0;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 50px rgba(0, 255, 255, 0.6), 0 0 100px rgba(0, 255, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 70px rgba(0, 255, 255, 0.8), 0 0 150px rgba(0, 255, 255, 0.6);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particles span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00ffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .particles span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 6s;
+        }
+
+        .particles span:nth-child(2) {
+            top: 30%;
+            left: 70%;
+            animation-duration: 8s;
+        }
+
+        .particles span:nth-child(3) {
+            top: 60%;
+            left: 40%;
+            animation-duration: 7s;
+        }
+
+        .particles span:nth-child(4) {
+            top: 80%;
+            left: 10%;
+            animation-duration: 9s;
+        }
+
+        .particles span:nth-child(5) {
+            top: 50%;
+            left: 90%;
+            animation-duration: 5s;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="clock-container">
+        <div id="clock">00:00:00</div>
+    </div>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clock = document.getElementById('clock');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

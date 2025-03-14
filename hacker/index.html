@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хакерские часы</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+
+        .shell-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+            z-index: 1;
+            white-space: pre-wrap;
+            font-size: 1rem;
+            line-height: 1.2;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .shell-bg span {
+            color: #0f0;
+            opacity: 0.8;
+        }
+
+        .clock-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
+            text-align: center;
+        }
+
+        #clock {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+            font-family: 'Digital', monospace;
+        }
+
+        @font-face {
+            font-family: 'Digital';
+            src: url('https://www.dafont.com/digital-7.font') format('truetype');
+        }
+    </style>
+</head>
+<body>
+    <div class="shell-bg" id="shell-bg"></div>
+
+    <div class="clock-container">
+        <div id="clock">00:00:00</div>
+    </div>
+
+    <script>
+        const shellBg = document.getElementById('shell-bg');
+
+        const commands = [
+            "Initializing hack sequence...",
+            "Accessing mainframe...",
+            "Bypassing firewall...",
+            "Decrypting security protocols...",
+            "Injecting payload...",
+            "Establishing remote connection...",
+            "Extracting sensitive data...",
+            "Covering tracks...",
+            "Hack complete."
+        ];
+
+        function createShellText() {
+            const span = document.createElement('span');
+            const randomCommand = commands[Math.floor(Math.random() * commands.length)];
+            span.textContent = `$ ${randomCommand}\n`;
+            shellBg.appendChild(span);
+
+            // Ограничиваем количество строк, чтобы не перегружать страницу
+            if (shellBg.childNodes.length > 50) {
+                shellBg.removeChild(shellBg.firstChild);
+            }
+
+            // Прокрутка вниз
+            shellBg.scrollTop = shellBg.scrollHeight;
+        }
+
+        setInterval(createShellText, 500);
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clock = document.getElementById('clock');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
